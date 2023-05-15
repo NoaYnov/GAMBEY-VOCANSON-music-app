@@ -1,5 +1,7 @@
 var client_id = 'daec6d9a79f942dd8c6aa6f1e01864a2';
 var client_secret = '2ea349c16553457fb31a3dfccb8d9a53';
+var Token;
+var Data
 
 // var authOptions = {
 //   url: 'https://accounts.spotify.com/api/token',
@@ -19,21 +21,38 @@ var client_secret = '2ea349c16553457fb31a3dfccb8d9a53';
 // });
 
 
-var redirect_uri = 'http://localhost:5500/callback';
+async function SpotifyAuthentification() {
+  let token = await fetch("https://accounts.spotify.com/api/token", {
+      method: "POST",
+      headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: `grant_type=client_credentials&client_id=${client_id}&client_secret=${client_secret}`
+  })
+  .then(response => response.json())
+  .then(data => {
+    Token = data;
+    console.log(Token);
+  })
+  .catch(error => console.log(error));
 
-var app = express();
+}
 
-app.get('/login', function(req, res) {
-
-  var state = generateRandomString(16);
-  var scope = 'user-read-private user-read-email';
-
-  res.redirect('https://accounts.spotify.com/authorize?' +
-    querystring.stringify({
-      response_type: 'code',
-      client_id: client_id,
-      scope: scope,
-      redirect_uri: redirect_uri,
-      state: state
-    }));
-});
+async function GetTracks(searchTerm) {
+  console.log(Token);
+  return await fetch(`https://api.spotify.com/v1/search?q=${searchTerm}&type=track`, {
+      method: "GET",
+      headers: {
+          authorization: `Bearer ${Token.access_token}`
+      }
+  })
+      .then(response => {   
+        return response.json();
+      })
+      .then(data => {
+        Data = data;
+        console.log(Data);
+      })
+      .catch(error => console.log(error));
+}
+SpotifyAuthentification();
