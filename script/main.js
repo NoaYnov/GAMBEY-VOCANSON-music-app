@@ -38,7 +38,7 @@ async function SpotifyAuthentification() {
 
 }
 
-async function GetTracks(searchTerm) {
+async function GetArtists(searchTerm) {
   return await fetch(`https://api.spotify.com/v1/search?q=${searchTerm}&type=artist`, {
       method: "GET",
       headers: {
@@ -79,7 +79,7 @@ function GetInput() {
     result = result.Capitalize();
     // console.log(result);
     
-    GetTracks(result);
+    GetArtists(result);
   }
 }
 
@@ -99,18 +99,19 @@ function Dropdown(Data) {
 
   }
 }
-var affiche = []
-function Details(e) {
-  let details = document.querySelector(".details");
-  let Data = e.target.myParams;
-  if (affiche.includes(Data.name)) {
-    return
-  }
-  affiche.push(Data.name);
-  index = affiche.indexOf(Data.name)
-  console.log(index)
-  let html = "<div id=\"player\"><figure><figcaption>"+Data.name+"</figcaption><audio controls src=\""+Data.preview_url+"\"></audio></figure><div id=\"close\" onclick=\"Close(this)\">X</div></div>`";
-  details.innerHTML += html
+
+// var affiche = []
+// function Details(e) {
+//   let details = document.querySelector(".details");
+//   let Data = e.target.myParams;
+//   if (affiche.includes(Data.name)) {
+//     return
+//   }
+//   affiche.push(Data.name);
+//   index = affiche.indexOf(Data.name)
+//   console.log(index)
+//   let html = "<div id=\"player\"><figure><figcaption>"+Data.name+"</figcaption><audio controls src=\""+Data.preview_url+"\"></audio></figure><div id=\"close\" onclick=\"Close(this)\">X</div></div>`";
+//   details.innerHTML += html
   // `
   // <div id="player">
   //   <figure>
@@ -125,16 +126,16 @@ function Details(e) {
   //   </div>
   //   </div>`;
     
-}
+// }
 
-function Close(e) {
-  e.parentNode.remove();
-  let name = e.parentNode.firstChild.firstChild.innerHTML
+// function Close(e) {
+//   e.parentNode.remove();
+//   let name = e.parentNode.firstChild.firstChild.innerHTML
   
-  affiche.splice(affiche.indexOf(name),1);
-  console.log(affiche.indexOf(name))
-  console.log(affiche)
-}
+//   affiche.splice(affiche.indexOf(name),1);
+//   console.log(affiche.indexOf(name))
+//   console.log(affiche)
+// }
 
 
 
