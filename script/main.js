@@ -39,7 +39,6 @@ async function SpotifyAuthentification() {
 }
 
 async function GetTracks(searchTerm) {
-  console.log(Token);
   return await fetch(`https://api.spotify.com/v1/search?q=${searchTerm}&type=track`, {
       method: "GET",
       headers: {
@@ -99,28 +98,44 @@ function Dropdown(Data) {
 
   }
 }
-var affiche = [];
+var affiche = []
 function Details(e) {
-  details = document.querySelector("#details");
+  let details = document.querySelector(".details");
   let Data = e.target.myParams;
-  for (let i = 0; i < affiche.length; i++) {
-    if (affiche[i] == Data.name) {
-      // console.log(affiche[i]);
-      alert("Already here");
-      return;
-    }
+  if (affiche.includes(Data.name)) {
+    return
   }
-  details.innerHTML +=`<figure>
-    <figcaption>${Data.name}</figcaption>
-    <audio
-        controls
-        src="${Data.preview_url}">
-            <a href="${Data.preview_url}">
-                Download audio
-            </a>
-    </audio>
-</figure>`;
-affiche.push(Data.name);
+  affiche.push(Data.name);
+  index = affiche.indexOf(Data.name)
+  console.log(index)
+  let html = "<div id=\"player\"><figure><figcaption>"+Data.name+"</figcaption><audio controls src=\""+Data.preview_url+"\"></audio></figure><div id=\"close\" onclick=\"Close(this)\">X</div></div>`";
+  details.innerHTML += html
+  `
+  <div id="player">
+    <figure>
+      <figcaption>${Data.name}</figcaption>
+      <audio
+          controls
+          src="${Data.preview_url}">
+      </audio>
+    </figure>
+    <div id="close" onclick="Close(this,Data,index)">
+    X
+    </div>
+    </div>`;
+    
 }
 
+function Close(e) {
+  e.parentNode.remove();
+  let name = e.parentNode.firstChild.firstChild.innerHTML
+  
+  affiche.splice(affiche.indexOf(name),1);
+  console.log(affiche.indexOf(name))
+  console.log(affiche)
+}
+
+
+
 SpotifyAuthentification();
+
