@@ -39,7 +39,7 @@ async function SpotifyAuthentification() {
 }
 
 async function GetTracks(searchTerm) {
-  return await fetch(`https://api.spotify.com/v1/search?q=${searchTerm}&type=track`, {
+  return await fetch(`https://api.spotify.com/v1/search?q=${searchTerm}&type=artist`, {
       method: "GET",
       headers: {
           authorization: `Bearer ${Token.access_token}`
@@ -50,6 +50,7 @@ async function GetTracks(searchTerm) {
       })
       .then(data => {
         Data = data;
+        console.log(Data.artists.items[0]);
         Dropdown(Data);
         // console.log(Data.tracks)
       })
@@ -90,10 +91,10 @@ function Dropdown(Data) {
   }
   var dropdown;
   for (let i = 0; i < 5; i++) {
-    console.log(Data.tracks.items[i].name);
+    console.log(Data.artists.items[i].name);
     dropdown = document.querySelector("#drp"+(i+1));
-    dropdown.innerHTML = Data.tracks.items[i].name+" - "+Data.tracks.items[i].artists[0].name 
-    dropdown.myParams = Data.tracks.items[i];
+    dropdown.innerHTML = Data.artists.items[i].name
+    dropdown.myParams = Data.artists.items[i];
     dropdown.addEventListener("click", Details);
 
   }
@@ -110,19 +111,19 @@ function Details(e) {
   console.log(index)
   let html = "<div id=\"player\"><figure><figcaption>"+Data.name+"</figcaption><audio controls src=\""+Data.preview_url+"\"></audio></figure><div id=\"close\" onclick=\"Close(this)\">X</div></div>`";
   details.innerHTML += html
-  `
-  <div id="player">
-    <figure>
-      <figcaption>${Data.name}</figcaption>
-      <audio
-          controls
-          src="${Data.preview_url}">
-      </audio>
-    </figure>
-    <div id="close" onclick="Close(this,Data,index)">
-    X
-    </div>
-    </div>`;
+  // `
+  // <div id="player">
+  //   <figure>
+  //     <figcaption>${Data.name}</figcaption>
+  //     <audio
+  //         controls
+  //         src="${Data.preview_url}">
+  //     </audio>
+  //   </figure>
+  //   <div id="close" onclick="Close(this,Data,index)">
+  //   X
+  //   </div>
+  //   </div>`;
     
 }
 

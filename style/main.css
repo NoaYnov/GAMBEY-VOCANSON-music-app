@@ -7,4 +7,22 @@
 
 .drp{
     display: none;
+    cursor: pointer;
+    user-select: none;
+    border: 1px solid #4c4b4b;
+    margin-top: 10px;
+    padding: 5px;
+}
+
+#player{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+#close{
+    cursor: pointer;
+    user-select: none;
 }
