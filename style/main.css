@@ -1,3 +1,9 @@
+html{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 #dropdown{
     display: flex;
     flex-direction: column;
@@ -25,4 +31,45 @@
 #close{
     cursor: pointer;
     user-select: none;
+}
+
+body{
+    background-color: #161616;
+    color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+#second_body{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#left_bar{
+    top: -10px;
+    left: 0;
+    position: fixed;
+    background-color: #111111;
+    
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    width: 232px;
+    height: 100vh;
+}
+
+#logo{
+    height: 40px;
+    width: 131px;
+}
+
+#place_logo{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
 }

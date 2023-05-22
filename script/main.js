@@ -100,42 +100,42 @@ function Dropdown(Data) {
   }
 }
 
-// var affiche = []
-// function Details(e) {
-//   let details = document.querySelector(".details");
-//   let Data = e.target.myParams;
-//   if (affiche.includes(Data.name)) {
-//     return
-//   }
-//   affiche.push(Data.name);
-//   index = affiche.indexOf(Data.name)
-//   console.log(index)
-//   let html = "<div id=\"player\"><figure><figcaption>"+Data.name+"</figcaption><audio controls src=\""+Data.preview_url+"\"></audio></figure><div id=\"close\" onclick=\"Close(this)\">X</div></div>`";
-//   details.innerHTML += html
-  // `
-  // <div id="player">
-  //   <figure>
-  //     <figcaption>${Data.name}</figcaption>
-  //     <audio
-  //         controls
-  //         src="${Data.preview_url}">
-  //     </audio>
-  //   </figure>
-  //   <div id="close" onclick="Close(this,Data,index)">
-  //   X
-  //   </div>
-  //   </div>`;
+var affiche = []
+function Details(e) {
+  let details = document.querySelector(".details");
+  let Data = e.target.myParams;
+  if (affiche.includes(Data.name)) {
+    return
+  }
+  affiche.push(Data.name);
+  index = affiche.indexOf(Data.name)
+  console.log(index)
+  let html = "<div id=\"player\"><figure><figcaption>"+Data.name+"</figcaption><audio controls src=\""+Data.preview_url+"\"></audio></figure><div id=\"close\" onclick=\"Close(this)\">X</div></div>`";
+  details.innerHTML += html
+  `
+  <div id="player">
+    <figure>
+      <figcaption>${Data.name}</figcaption>
+      <audio
+          controls
+          src="${Data.preview_url}">
+      </audio>
+    </figure>
+    <div id="close" onclick="Close(this,Data,index)">
+    X
+    </div>
+    </div>`;
     
-// }
+}
 
-// function Close(e) {
-//   e.parentNode.remove();
-//   let name = e.parentNode.firstChild.firstChild.innerHTML
+function Close(e) {
+  e.parentNode.remove();
+  let name = e.parentNode.firstChild.firstChild.innerHTML
   
-//   affiche.splice(affiche.indexOf(name),1);
-//   console.log(affiche.indexOf(name))
-//   console.log(affiche)
-// }
+  affiche.splice(affiche.indexOf(name),1);
+  console.log(affiche.indexOf(name))
+  console.log(affiche)
+}
 
 
 
